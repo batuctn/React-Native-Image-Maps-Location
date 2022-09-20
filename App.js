@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { Provider, useSelector } from 'react-redux';
 
-export default function App() {
+import AuthNavigaiton from './src/navigaiton/AuthNavigation';
+import AppNavigaiton from './src/navigaiton/AppNavigaiton';
+import { store } from './src/store/index';
+import {
+ 
+  SafeAreaProvider,
+  
+} from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { View } from 'react-native';
+
+const Contain = () => {
+  const user = useSelector((state) => state.user.user);
+  const {top}=useSafeAreaInsets()
   return (
-    <View style={styles.container}>
-      <Text>First Commit</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider style={{paddingTop:top}}>
+      <StatusBar style='dark' />
+      <NavigationContainer>
+        {/* {user ? <AppNavigaiton /> : <AuthNavigaiton />} */}
+        <AppNavigaiton />
+        </NavigationContainer>
+     </SafeAreaProvider>
+   
+  );
+};
+
+function App() {
+  return (
+    
+    <SafeAreaProvider>
+    <Provider store={store}>
+      <Contain />
+    </Provider>
+    </SafeAreaProvider>
+   
+  
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
