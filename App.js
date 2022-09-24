@@ -12,7 +12,7 @@ import {
 } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { View } from 'react-native';
+import {NativeBaseProvider} from 'native-base';
 
 const Contain = () => {
   const user = useSelector((state) => state.user.user);
@@ -21,8 +21,8 @@ const Contain = () => {
     <SafeAreaProvider style={{paddingTop:top}}>
       <StatusBar style='dark' />
       <NavigationContainer>
-        {/* {user ? <AppNavigaiton /> : <AuthNavigaiton />} */}
-        <AppNavigaiton />
+        {user ? <AppNavigaiton /> : <AuthNavigaiton />}
+     
         </NavigationContainer>
      </SafeAreaProvider>
    
@@ -33,9 +33,11 @@ function App() {
   return (
     
     <SafeAreaProvider>
+      <NativeBaseProvider>
     <Provider store={store}>
       <Contain />
     </Provider>
+    </NativeBaseProvider>
     </SafeAreaProvider>
    
   

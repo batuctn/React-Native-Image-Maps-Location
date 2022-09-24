@@ -21,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "bundleIdentifier":"com.akbank.snap",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
