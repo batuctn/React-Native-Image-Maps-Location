@@ -4,6 +4,7 @@ import {setDoc, doc} from 'firebase/firestore';
 import {Button, Input, Pressable, Text, View} from 'native-base';
 import {Controller, useForm} from 'react-hook-form';
 import CustomBotton from '../../components/CustomBotton';
+import CustomInput from '../../components/Input';
 import {auth, db} from '../../utils/firebase';
 
 const SignUp = () => {
@@ -34,12 +35,7 @@ const SignUp = () => {
         name="email"
         render={({field}) => {
           return (
-            <Input
-              placeholder="E-mail"
-              {...field}
-              my={2}
-              onChangeText={field.onChange}
-            />
+            <CustomInput placeholder="E-mail" field={field}/>
           );
         }}
       />
@@ -51,19 +47,10 @@ const SignUp = () => {
           minLength: {value: 6, message: 'Password can be at least 6 chars. '},
         }}
         render={({field}) => (
-          <Input
-            placeholder="Password"
-            {...field}
-            my={2}
-            onChangeText={field.onChange}
-            secureTextEntry={true}
-          />
+          <CustomInput placeholder="E-mail" field={field} secureTextEntry/>
         )}
       />
-
       <CustomBotton title="Sign Up" onPress={handleSubmit(handleSignUp)} />
-        
-     
     </View>
   );
 };

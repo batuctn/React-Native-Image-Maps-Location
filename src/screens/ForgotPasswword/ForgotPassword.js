@@ -4,8 +4,9 @@ import {sendPasswordResetEmail} from 'firebase/auth';
 import {auth} from '../../utils/firebase';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
-import {Button, Input, Text, View, useToast} from 'native-base';
+import {View, useToast} from 'native-base';
 import CustomBotton from '../../components/CustomBotton';
+import CustomInput from '../../components/Input';
 
 const ForgotPassword = () => {
   const {
@@ -46,13 +47,7 @@ const ForgotPassword = () => {
         }}
         render={({field}) => {
           return (
-            <Input
-              placeholder="E-mail"
-              autoCapitalize="none"
-              my={2}
-              {...field}
-              onChangeText={field.onChange}
-            />
+            <CustomInput placeholder="E-mail" field={field}/>
           );
         }}
       />

@@ -7,6 +7,7 @@ import {collection, doc, getDoc, query, updateDoc} from 'firebase/firestore';
 import {db} from '../../utils/firebase';
 import { updateUser } from '../../store';
 import CustomBotton from '../../components/CustomBotton';
+import CustomInput from '../../components/Input';
 
 
 const EditProfile = () => {
@@ -31,20 +32,13 @@ const EditProfile = () => {
     });
   };
   return (
-    <View style={{padding:4,margin:12,display:"flex",justifyContent:"center",alignContent:"center"}}>
+    <View style={{padding:4,margin:12,display:"flex",justifyContent:"center",alignContent:"center",flex:1}}>
       <Controller
         control={control}
         name="firstName"
         render={({field}) => {
           return (
-            <Input
-            w={"90%"}
-              alignSelf="center"
-              my={2}
-              placeholder="First Name"
-              {...field}
-              onChangeText={field.onChange}
-            />
+            <CustomInput placeholder="First Name" field={field}/>
           );
         }}
       />
@@ -52,31 +46,16 @@ const EditProfile = () => {
       control={control}
       name="lastName"
       render={({field}) => (
-        <Input
-        w={"90%"}
-              alignSelf="center"
-              my={2}
-          placeholder="Last Name"
-          {...field}
-          onChangeText={field.onChange}
-        />
+        <CustomInput field={field} placeholder="Last Name"/>
       )}
     />
     <Controller
       control={control}
       name="location"
       render={({field}) => (
-        <Input
-        w={"90%"}
-              alignSelf="center"
-              my={2}
-          placeholder="Location"
-          {...field}
-          onChangeText={field.onChange}
-        />
+        <CustomInput placeholder="Location" field={field}/>
       )}
     />
-
     <CustomBotton title="Update Profile" onPress={handleSubmit(handleSubmitProfile)} />
   </View>
   )

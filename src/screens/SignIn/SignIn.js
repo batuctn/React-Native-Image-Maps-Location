@@ -11,6 +11,7 @@ import {Button, Input, Text, View, useToast} from 'native-base';
 import {doc, getDoc} from 'firebase/firestore';
 import CustomBotton from '../../components/CustomBotton';
 import LottieView from 'lottie-react-native';
+import CustomInput from '../../components/Input';
 
 const SignIn = () => {
   const {
@@ -79,15 +80,7 @@ const SignIn = () => {
         }}
         render={({field}) => {
           return (
-            <Input
-              w={"90%"}
-              alignSelf="center"
-              placeholder="E-mail"
-              autoCapitalize="none"
-              my={2}
-              {...field}
-              onChangeText={field.onChange}
-            />
+            <CustomInput field={field} placeholder="E-mail" />
           );
         }}
       />
@@ -100,16 +93,10 @@ const SignIn = () => {
         control={control}
         render={({field}) => {
           return (
-            <Input  
-              w={"90%"}
-              alignSelf="center"
-              autoCapitalize="none"
+            <CustomInput  
+              field={field}
               secureTextEntry
-              placeholder="Password"
-              my={2}
-              {...field}
-              onChangeText={field.onChange}
-            />
+              placeholder="Password"/>
           );
         }}
       />
