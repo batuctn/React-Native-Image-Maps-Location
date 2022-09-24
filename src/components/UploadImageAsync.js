@@ -1,7 +1,7 @@
 import {ref, getDownloadURL, uploadBytes} from 'firebase/storage';
 import {db, storage} from '../utils/firebase';
 import uuid from 'react-native-uuid';
-const UploadImageAsync = async({uri})=> {
+async function UploadImageAsync ({uri}) {
     
     // Why are we using XMLHttpRequest? See:
     // https://github.com/expo/expo/issues/2402#issuecomment-443726662

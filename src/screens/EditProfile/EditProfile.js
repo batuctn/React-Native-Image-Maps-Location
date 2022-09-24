@@ -3,20 +3,24 @@ import {View, Text, Input, Button} from 'native-base';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
-import {doc, updateDoc} from 'firebase/firestore';
+import {collection, doc, getDoc, query, updateDoc} from 'firebase/firestore';
 import {db} from '../../utils/firebase';
 import { updateUser } from '../../store';
 import CustomBotton from '../../components/CustomBotton';
 
+
 const EditProfile = () => {
+  
   const user = useSelector(state => state.user.user);
   console.log("reduxuser",user)
   const dispatch = useDispatch();
+ 
   const {control, handleSubmit} = useForm({
     defaultValues: {
       ...user,
     },
   });
+
   const handleSubmitProfile = async data => {
     console.log(data);
     const docRef = doc(db, 'user', user.id);

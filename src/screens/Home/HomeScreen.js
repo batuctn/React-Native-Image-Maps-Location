@@ -53,14 +53,14 @@ const HomeScreen = () => {
 
     const result = await ImagePicker.launchCameraAsync();
     if (!result.cancelled) {
-      const photoURL = await uploadImageAsync({uri:result.uri});
+      const photoURL = await UploadImageAsync({uri:result.uri});
       setImage(photoURL);
       setIsActive(true);
      
     }
 }
 
-const handleSubmitProfile = async data => {
+const handleSubmitPhoto = async data => {
   const place = await Location.reverseGeocodeAsync({
             latitude : location?.coords.latitude,
             longitude : location?.coords.longitude
@@ -73,7 +73,12 @@ const handleSubmitProfile = async data => {
     latitude:location.coords.latitude,
     place:place,
   }).then(response => {
-    dispatch(updateUser({...data, photoURL: image}));
+    dispatch(updateUser({...data, 
+      photoURL: image,
+      longitude:location.coords.longitude,
+      latitude:location.coords.latitude,
+
+    }));
   });
 };
 
@@ -82,7 +87,7 @@ const handleSubmitProfile = async data => {
       
       {isActive ? (
       <ImageBackground style={{width:"100%",height:"100%"}} source={{uri:image}}>
-        <Button title='send'onPress={()=>{handleSubmitProfile(),setIsActive(false)}}  />
+        <Button title='send'onPress={()=>{handleSubmitPhoto(),setIsActive(false)}}  />
       </ImageBackground>) : 
       (
         <View>

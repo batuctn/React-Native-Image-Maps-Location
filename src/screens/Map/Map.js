@@ -2,7 +2,6 @@ import { View, StyleSheet, Alert, Image, Pressable, Button, ImageBackground } fr
 import React, { useEffect, useRef, useState } from 'react'
 import MapView, {Marker} from 'react-native-maps';
 import { Dimensions } from 'react-native';
-import * as Location from 'expo-location';
 import {db} from '../../utils/firebase';
 import {
   doc,
@@ -19,10 +18,10 @@ import {useIsFocused} from '@react-navigation/native';
 
 const Map = () => {
 
-  const mapRef = useRef()
   const user = useSelector(state => state.user.user);
   const [users, setUsers] = useState([]);
   const isFocused = useIsFocused();
+  console.log("userRedux",user);
 
 
   const getUsers = async () => {
@@ -41,15 +40,14 @@ const Map = () => {
        
       <MapView 
        initialRegion={{
-        latitude: user.latitude,
-        longitude: user.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: user?.latitude,
+        longitude: user?.longitude,
+        latitudeDelta: 10.122,
+        longitudeDelta: 10.2421,
       }}
       showsUserLocation 
-      ref={mapRef} 
       style={styles.map } 
-      maxZoomLevel={20} 
+      maxZoomLevel={10} 
       minZoomLevel={5} >
            {users?.map((userItem,index) => {
           return (

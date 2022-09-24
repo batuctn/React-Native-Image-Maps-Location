@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {auth, db} from '../../utils/firebase';
@@ -10,6 +10,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {Button, Input, Text, View, useToast} from 'native-base';
 import {doc, getDoc} from 'firebase/firestore';
 import CustomBotton from '../../components/CustomBotton';
+import LottieView from 'lottie-react-native';
 
 const SignIn = () => {
   const {
@@ -25,6 +26,7 @@ const SignIn = () => {
   const {show} = useToast();
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
+  const animation = useRef(null);
 
   const handleSignIn = data => {
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -48,10 +50,25 @@ const SignIn = () => {
       const parsedata = JSON.parse(parserespo);
       dispatch(setUser(parsedata));
     });
-    
+  }, []);
+  useEffect(() => {
+    // You can control the ref programmatically, rather than using autoPlay
+    animation.current?.play();
   }, []);
   return (
     <View p={4} style={{justifyContent:"center",alignContent:"center",flex:1}}>
+       <LottieView
+        autoPlay
+        ref={animation}
+        style={{
+          width: 200,
+          height: 200,
+          alignSelf:"center"
+     
+        }}
+        // Find more Lottie files at https://lottiefiles.com/featured
+        source={require('../../../assets/5849-camera-icon.json')}
+      />
       <Controller 
         name="email"
         control={control}
