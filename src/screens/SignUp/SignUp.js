@@ -47,7 +47,7 @@ const SignUp = () => {
           minLength: {value: 6, message: 'Password can be at least 6 chars. '},
         }}
         render={({field}) => (
-          <CustomInput placeholder="E-mail" field={field} secureTextEntry/>
+          <CustomInput placeholder="Password" field={field} secureTextEntry/>
         )}
       />
       <CustomBotton title="Sign Up" onPress={handleSubmit(handleSignUp)} />

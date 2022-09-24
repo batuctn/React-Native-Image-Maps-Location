@@ -35,7 +35,7 @@ const Profile = ({navigation}) => {
   return (
     <View style={{justifyContent:"center",alignContent:"center",flex:1,}}>
       <Pressable onPress={pickImage}>
-        <Image source={{uri:user.ProfilePhotoUrl}} style={{width:100,height:100,borderRadius:50,alignSelf:"center",backgroundColor: "gray"}} />
+        <Image source={{uri:user.ProfilePhotoUrl}} style={{width:150,height:150,borderRadius:75,alignSelf:"center",backgroundColor: "gray",marginBottom:35}} />
       </Pressable>
       <CustomBotton title='Edit Profile' onPress={()=>{
         navigation.navigate("EditProfile")

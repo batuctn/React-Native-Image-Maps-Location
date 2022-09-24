@@ -47,7 +47,7 @@ const ForgotPassword = () => {
         }}
         render={({field}) => {
           return (
-            <CustomInput placeholder="E-mail" field={field}/>
+            <CustomInput placeholder="Password" field={field}/>
           );
         }}
       />
